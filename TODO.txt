@@ -1,0 +1,91 @@
+TODO: Backend
+
+- Make a proper forgot password function:
+    https://www.baeldung.com/spring-security-registration-i-forgot-my-password
+
+Which User Role should have access to what?
+Secretary is probably admin
+Teacher is Mod/User
+Student is user
+
+MAKE SOME SORTING, if you add participants to course: 11, 9, 15 they show up like that, sort them in order
+
+TODO: Need to fix the bug with person conversion and users, check around - find a way to convert it so userDto isnt null?
+
+implement secondary level cache: https://www.baeldung.com/hibernate-second-level-cache
+
+Maybe CourseService and course message handling + controller should be split up?
+
+//Less Priority:
+
+Protokol system
+Homework system til klasser m. fileupload evt
+Tilføj fag til courses, seperat entity.
+Think of something more?
+
+New entities are in pastebin:
+https://pastebin.com/5NB6KC48
+https://pastebin.com/M4xrmKfm
+https://pastebin.com/LJpDuJZY
+https://pastebin.com/CmD5B9Ye
+
+TODO: Front-End:
+
+- get user info for person, so a person can see their user details
+    To get this, store login info except password in svelte localstorage store and get it from there maybe.
+
+As for Enums in the front end, you should probably implement a switch like in UserService, then
+you show options on the front end as a dropdown maybe?, pass em as strings -> handle in backend
+
+custom error page, httpstatus internal server error?
+
+Design frontend in paint or smth to get a schematic
+
+Logout button needs to destroy token in localstorage.
+
+VALIDIATION!!!
+
+Show refreshtoken in userdetails section, tell people to write it down - remember to update it when it refreshes eg. every 14 days? or whatever its set to
+
+Dropdown select subject that belongs to course when adding an assignment, make sure to get id from course with it.
+
+Hide different options based on user role. eg a student shouldnt see teacher/secretary stuff.
+
+Implement dropdown or checkbox for when creating a student, send Role as a string.
+
+Front End:
+-> Tickbox in frontend when adding student/teacher (add user for this person)
+-> prompt when logging in first time based on boolean, change password if boolean is true, as an alert.
+-> Email their password to them (either front or backend)
+-> Implement a forgot password at login
+
+UserController: (maybe just in AuthController)
+
+Auth controller:
+Implement a forgot password, change password, show user details etc
+
+User Model:
+Boolean firstTimeLogin
+- remember to add it to signIn response so you can use it on front end. Add roles as well if they aren't added
+
+
+Person (Teacher issue)
+Atm a teacher can only belong to one course,
+Fix this by implementing MTM relationship
+https://www.baeldung.com/jpa-many-to-many
+
+Non owner side must have this for removal.
+entityManager.remove(group)
+for (User user : group.users) {
+     user.groups.remove(group);
+     }
+
+Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        System.out.println(name);
+        use this for setting Authors name to the refered Users name
+
+If you decide to split person up, use @MappedSuperClass and extend student etc with it.
+
+Long term:
+Both a folkeskole, gymnasie og uni version

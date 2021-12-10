@@ -1,19 +1,16 @@
 package com.nezzar064.ocafe.service.impl;
 
 import com.nezzar064.ocafe.exception.DataNotFoundException;
-import com.nezzar064.ocafe.model.PersonRole;
 import com.nezzar064.ocafe.model.UserRole;
 import com.nezzar064.ocafe.model.dto.PersonDto;
 import com.nezzar064.ocafe.model.entity.Role;
 import com.nezzar064.ocafe.model.entity.User;
 import com.nezzar064.ocafe.payload.request.LoginRequest;
 import com.nezzar064.ocafe.payload.request.SignupRequest;
-import com.nezzar064.ocafe.repository.RefreshTokenRepository;
 import com.nezzar064.ocafe.repository.RoleRepository;
 import com.nezzar064.ocafe.repository.UserRepository;
 import com.nezzar064.ocafe.security.jwt.JwtUtils;
-import com.nezzar064.ocafe.security.service.UserDetailsImpl;
-import org.apache.commons.lang3.StringUtils;
+import com.nezzar064.ocafe.security.model.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

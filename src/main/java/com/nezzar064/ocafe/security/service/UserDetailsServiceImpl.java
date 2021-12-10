@@ -2,6 +2,7 @@ package com.nezzar064.ocafe.security.service;
 
 import com.nezzar064.ocafe.model.entity.User;
 import com.nezzar064.ocafe.repository.UserRepository;
+import com.nezzar064.ocafe.security.model.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -43,6 +43,7 @@ public class CourseController {
     @GetMapping("/courses")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<CourseListDto>> getAllCourses() {
+        log.info("Request to get all courses");
         List<CourseListDto> result = courseService.getAllCourses();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -50,6 +51,7 @@ public class CourseController {
     @GetMapping("/courses/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseDto> getCourseById(@PathVariable long id) {
+        log.info("Request to get Course: {}", id);
         CourseDto result = courseService.findById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

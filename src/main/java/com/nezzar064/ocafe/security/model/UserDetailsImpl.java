@@ -1,4 +1,4 @@
-package com.nezzar064.ocafe.security.service;
+package com.nezzar064.ocafe.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nezzar064.ocafe.model.entity.User;

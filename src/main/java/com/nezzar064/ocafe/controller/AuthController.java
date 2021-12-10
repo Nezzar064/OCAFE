@@ -10,7 +10,7 @@ import com.nezzar064.ocafe.payload.response.JwtResponse;
 import com.nezzar064.ocafe.payload.response.SignUpResponse;
 import com.nezzar064.ocafe.payload.response.TokenRefreshResponse;
 import com.nezzar064.ocafe.security.service.RefreshTokenService;
-import com.nezzar064.ocafe.security.service.UserDetailsImpl;
+import com.nezzar064.ocafe.security.model.UserDetailsImpl;
 import com.nezzar064.ocafe.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

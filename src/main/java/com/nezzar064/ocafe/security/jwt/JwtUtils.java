@@ -1,6 +1,6 @@
 package com.nezzar064.ocafe.security.jwt;
 
-import com.nezzar064.ocafe.security.service.UserDetailsImpl;
+import com.nezzar064.ocafe.security.model.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

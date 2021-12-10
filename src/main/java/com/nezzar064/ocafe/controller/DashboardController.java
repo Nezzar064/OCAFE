@@ -51,7 +51,7 @@ public class DashboardController {
     }
 
     @PostMapping("/dashboards/add")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<DashboardDto> createDashboard(@Valid @RequestBody DashboardDto dashboardDto) throws URISyntaxException {
         log.info("Request to create Dashboard: {}", dashboardDto);
         DashboardDto result = dashboardService.save(dashboardDto);
@@ -60,7 +60,7 @@ public class DashboardController {
     }
 
     @PutMapping("/dashboards/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<DashboardDto> editDashboard(@PathVariable long id, @Valid @RequestBody DashboardDto dashboardDto) {
         log.info("Request to update Dashboard: {}", dashboardDto);
         DashboardDto result = dashboardService.edit(dashboardDto, id);
@@ -68,7 +68,7 @@ public class DashboardController {
     }
 
     @DeleteMapping("/dashboards/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> deleteDashboard(@PathVariable("id") long id) {
         log.info("Request to delete Dashboard: {}", id);
         dashboardService.delete(id);

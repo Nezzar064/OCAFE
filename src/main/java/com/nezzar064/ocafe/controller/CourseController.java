@@ -57,7 +57,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses/add")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseDto> createCourse(@Valid @RequestBody CourseDto courseDto) throws URISyntaxException {
         log.info("Request to create Course: {}", courseDto);
         CourseDto result = courseService.save(courseDto);
@@ -65,7 +65,7 @@ public class CourseController {
     }
 
     @PutMapping("/courses/{id}/participants/add")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseDto> addCourseParticipants(@PathVariable long id, @Valid @RequestBody List<PersonDto> courseParticipants) {
         log.info("Request to add course participants to Course: {}", courseParticipants);
         //TODO: Temporary fix, find a way to preserve the user.
@@ -76,7 +76,7 @@ public class CourseController {
     }
 
     @PutMapping("/courses/{id}/participants/remove")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseDto> editCourseParticipants(@PathVariable long id, @Valid @RequestBody List<PersonDto> courseParticipantsToRemove) {
         log.info("Request to edit course participants to Course: {}", courseParticipantsToRemove);
         CourseDto result = courseService.removeCourseParticipants(courseParticipantsToRemove, id);
@@ -84,7 +84,7 @@ public class CourseController {
     }
 
     @PutMapping("/courses/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseDto> editCourse(@PathVariable long id, @Valid @RequestBody CourseDto courseDto) {
         log.info("Request to update Course: {}", courseDto);
         CourseDto result = courseService.edit(courseDto, id);
@@ -92,7 +92,7 @@ public class CourseController {
     }
 
     @DeleteMapping("/courses/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> deleteCourse(@PathVariable("id") long id) {
         log.info("Request to delete Course: {}", id);
         courseService.delete(id);
@@ -101,6 +101,7 @@ public class CourseController {
     }
 
     //TODO(Thought): Maybe this should go in under courses/id? and its own controller maybe?
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/courses/{id}/messages")
     public ResponseEntity<List<CourseMessageDto>> getMessagesForCourse(@PathVariable("id") long courseId) {
         List<CourseMessageDto> courseMessages = courseService.getMessagesForCourse(courseId);
@@ -108,6 +109,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses/{id}/messages/add")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseMessageDto> addMessageToCourse(@PathVariable("id") long courseId, @Valid @RequestBody MessageRequest courseMessageRequest) {
         log.info("Request to add message to Course: {}", courseMessageRequest);
         PersonDto personDto = personService.getPersonNameFromUsername(getCurrentAuthenticatedUsersUsername());
@@ -117,6 +119,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses/messages/{id}/reply")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseMessageDto> replyToMessage(@PathVariable("id") long messageId, @Valid @RequestBody MessageReplyRequest courseMessageReplyRequest) {
         log.info("Request to add reply to Message: {}", courseMessageReplyRequest);
         PersonDto personDto = personService.getPersonNameFromUsername(getCurrentAuthenticatedUsersUsername());

@@ -33,21 +33,21 @@ public class SecretaryController {
     }
 
     @GetMapping({"/student-management/students"})
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<PersonListDto>> getAllPersons() {
         List<PersonListDto> studentList = personService.getAllPersons(PersonRole.STUDENT);
         return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
     @GetMapping({"/student-management/students/{id}", "/teacher-management/teachers/{id}"})
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PersonDto> getPersonById(@PathVariable long id) {
         PersonDto result = personService.getPersonById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping("/student-management/students/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PersonDto> editStudent(@PathVariable long id, @Valid @RequestBody PersonDto student) {
         log.info("Request to update Student: {}", student);
         PersonDto result = personService.editPerson(id, student, PersonRole.STUDENT);
@@ -55,7 +55,7 @@ public class SecretaryController {
     }
 
     @PostMapping("/student-management/students/add")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PersonDto> createStudent(@Valid @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) PersonDto student) throws URISyntaxException {
         log.info("Request to create Student: {}", student);
         PersonDto result = personService.createPerson(student, PersonRole.STUDENT);
@@ -63,7 +63,7 @@ public class SecretaryController {
     }
 
     @DeleteMapping("/student-management/students/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> deleteStudent(@PathVariable("id") long id) {
         log.info("Request to delete Student: {}", id);
         personService.deletePerson(id);
@@ -71,14 +71,14 @@ public class SecretaryController {
     }
 
     @GetMapping("/teacher-management/teachers")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<PersonListDto>> getAllTeachers() {
         List<PersonListDto> teacherList = personService.getAllPersons(PersonRole.TEACHER);
         return new ResponseEntity<>(teacherList, HttpStatus.OK);
     }
 
     @PutMapping("/teacher-management/teachers/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PersonDto> editTeacher(@PathVariable long id, @Valid @RequestBody PersonDto teacher) {
         log.info("Request to update Teacher: {}", teacher);
         PersonDto result = personService.editPerson(id, teacher, PersonRole.TEACHER);
@@ -86,7 +86,7 @@ public class SecretaryController {
     }
 
     @PostMapping("/teacher-management/teachers/add")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PersonDto> createTeacher(@Valid @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) PersonDto teacher) throws URISyntaxException {
         log.info("Request to create Teacher: {}", teacher);
         PersonDto result = personService.createPerson(teacher, PersonRole.TEACHER);
@@ -94,7 +94,7 @@ public class SecretaryController {
     }
 
     @DeleteMapping("/teacher-management/teachers/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> deleteTeacher(@PathVariable("id") long id) {
         log.info("Request to delete Teacher: {}", id);
         personService.deletePerson(id);

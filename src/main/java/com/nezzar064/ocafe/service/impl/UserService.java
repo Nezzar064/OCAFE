@@ -93,6 +93,7 @@ public class UserService {
 
     //Handles user creation for a person based on their role
     //Teachers get username from range 200-999, students 2000-9999
+    //TODO implement secretary role for this as well
     //TODO: Implement a password generator for this so it's not just "password".
     public User createUserForPerson(PersonDto personDto) {
         User user = new User();

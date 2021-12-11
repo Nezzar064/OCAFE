@@ -75,7 +75,7 @@ public class CourseController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PutMapping("/courses/{id}/participants/remove")
+    @PutMapping("/courses/{id}/participants/edit")
     @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<CourseDto> editCourseParticipants(@PathVariable long id, @Valid @RequestBody List<PersonDto> courseParticipantsToRemove) {
         log.info("Request to edit course participants to Course: {}", courseParticipantsToRemove);
